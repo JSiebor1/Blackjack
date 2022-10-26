@@ -54,6 +54,7 @@ public class Deck {
          * king=10 (13)
          */
 
+        // assigns names
         for (int i = 0; i < deckSize; i++) {
             switch (deck[i].getValue()) {
                 case 1:

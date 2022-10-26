@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck {
@@ -24,25 +25,25 @@ public class Deck {
 
     public void genDeck(Card[] deck) {
         // creates an array of cards
-        for (int i = 0; i < deckSize; i++) {
+        for (int i = 0; i < deck.length; i++) {
             deck[i] = new Card();
         }
 
         // initializes values 1-13
-        for (int i = 0, n = 1; i < deckSize; i++, n++) {
-            if (n > deckSize / 4)
+        for (int i = 0, n = 1; i < deck.length; i++, n++) {
+            if (n > deck.length / 4)
                 n = 1;
             deck[i].setValue(n);
         }
 
         // assigns suits
         String suite = "Hearts";
-        for (int i = 0; i < deckSize; i++) {
-            if (i / (deckSize / 4) == 1)
+        for (int i = 0; i < deck.length; i++) {
+            if (i / (deck.length / 4) == 1)
                 suite = "Clubs";
-            else if (i / (deckSize / 4) == 2)
+            else if (i / (deck.length / 4) == 2)
                 suite = "Spades";
-            else if (i / (deckSize / 4) == 3)
+            else if (i / (deck.length / 4) == 3)
                 suite = "Diamonds";
             deck[i].setSuite(suite);
         }
@@ -55,7 +56,7 @@ public class Deck {
          */
 
         // assigns names
-        for (int i = 0; i < deckSize; i++) {
+        for (int i = 0; i < deck.length; i++) {
             switch (deck[i].getValue()) {
                 case 1:
                     deck[i].setName("Ace");
@@ -100,7 +101,7 @@ public class Deck {
         }
 
         // set courts to 10
-        for (int i = 0; i < deckSize; i++) {
+        for (int i = 0; i < deck.length; i++) {
             if (deck[i].getValue() > 10)
                 deck[i].setValue(10);
         }
@@ -110,9 +111,9 @@ public class Deck {
 
     public Card[] shuffle(Card[] deck) {
         Card temp = new Card();
-        for (int i = 0; i < deckSize * 10; i++) {
-            int x = genRand(0, deckSize - 1);
-            int y = genRand(0, deckSize - 1);
+        for (int i = 0; i < deck.length * 10; i++) {
+            int x = genRand(0, deck.length - 1);
+            int y = genRand(0, deck.length - 1);
 
             temp = deck[x];
             deck[x] = deck[y];
@@ -120,5 +121,12 @@ public class Deck {
         }
 
         return deck;
+    }
+
+    public ArrayList<Card> convert(ArrayList<Card> deckList, Card[] deck) {
+        for(int i = 0; i < deck.length; i++) 
+            deckList.add(deck[i]);
+        
+        return deckList;
     }
 }

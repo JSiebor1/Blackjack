@@ -23,18 +23,21 @@ public class Deck {
     }
 
     public void genDeck(Card[] deck) {
-        for (int i = 0; i < deckSize; i++) { // array of cards
+        // creates an array of cards
+        for (int i = 0; i < deckSize; i++) {
             deck[i] = new Card();
         }
 
-        for (int i = 0, n = 1; i < deckSize; i++, n++) { // assigns values 1-13
+        // initializes values 1-13
+        for (int i = 0, n = 1; i < deckSize; i++, n++) {
             if (n > deckSize / 4)
                 n = 1;
             deck[i].setValue(n);
         }
 
+        // assigns suits
         String suite = "Hearts";
-        for (int i = 0; i < deckSize; i++) { // assigns suites
+        for (int i = 0; i < deckSize; i++) {
             if (i / (deckSize / 4) == 1)
                 suite = "Clubs";
             else if (i / (deckSize / 4) == 2)
@@ -51,7 +54,8 @@ public class Deck {
          * king=10 (13)
          */
 
-        for (int i = 0; i < deckSize; i++) { // names
+        // assigns names based on values
+        for (int i = 0; i < deckSize; i++) {
             if (deck[i].getValue() == 1)
                 deck[i].setName("Ace");
             else if (deck[i].getValue() == 2)
@@ -78,6 +82,12 @@ public class Deck {
                 deck[i].setName("Queen");
             else if (deck[i].getValue() == 13)
                 deck[i].setName("King");
+        }
+
+        // set courts to 10
+        for(int i = 0; i < deckSize; i++) {
+            if(deck[i].getValue() > 10)
+                deck[i].setValue(10);
         }
 
         setDeck(shuffle(deck));

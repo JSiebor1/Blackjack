@@ -6,6 +6,7 @@ public class Card {
     public Card() {
         suite = "";
         value = 0;
+        name = "";
     }
 
     public String getSuite() {

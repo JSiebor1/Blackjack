@@ -1,22 +1,22 @@
 package BlackjackApp;
 
 public class Card {
-    private String suite;
+    private String suit;
     private int value;
     private String name;
 
     public Card() {
-        suite = "";
+        suit = "";
         value = 0;
         name = "";
     }
 
-    public String getSuite() {
-        return suite;
+    public String getSuit() {
+        return suit;
     }
 
-    public void setSuite(String suite) {
-        this.suite = suite;
+    public void setSuit(String suit) {
+        this.suit = suit;
     }
 
     public int getValue() {
@@ -36,6 +36,6 @@ public class Card {
     }
 
     public String toString() {
-        return getName() + " of " + getSuite();
+        return getName() + " of " + getSuit();
     }
 }

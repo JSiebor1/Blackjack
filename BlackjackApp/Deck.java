@@ -38,15 +38,15 @@ public class Deck {
         }
 
         // assigns suits
-        String suite = "Hearts";
+        String suit = "Hearts";
         for (int i = 0; i < deck.length; i++) {
             if (i / (deck.length / 4) == 1)
-                suite = "Clubs";
+                suit = "Clubs";
             else if (i / (deck.length / 4) == 2)
-                suite = "Spades";
+                suit = "Spades";
             else if (i / (deck.length / 4) == 3)
-                suite = "Diamonds";
-            deck[i].setSuite(suite);
+                suit = "Diamonds";
+            deck[i].setSuit(suit);
         }
 
         /*

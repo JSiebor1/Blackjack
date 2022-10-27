@@ -1,7 +1,10 @@
 # Blackjack
-The goal of this project is to sufficiently learn how to develop a game using object-oriented programming. Blackjack was one of the initial ideas, allowing for creation of Cards and Decks which interact with eachother using objects, fulfilling the purpose. 
 
 ## Project Proposal
+
+### Theme
+The goal of this project is to sufficiently learn how to develop a game using object-oriented programming. Blackjack was one of the initial ideas, allowing for creation of Cards and Decks which interact with eachother using objects, fulfilling the purpose. 
+
 ### List of features
 The game will follow the rules of US blackjack. Deck class has-a card class: creates a deck that can be randomized/redrawn for the dealer and player at the start of a new round. The player can use points to bet against the dealer and gain more points. GUI: Will allow the player to hit, stand, split, and double down.
 

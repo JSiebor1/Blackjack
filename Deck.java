@@ -123,10 +123,4 @@ public class Deck {
         return deck;
     }
 
-    public ArrayList<Card> convert(ArrayList<Card> deckList, Card[] deck) {
-        for(int i = 0; i < deck.length; i++) 
-            deckList.add(deck[i]);
-        
-        return deckList;
-    }
 }

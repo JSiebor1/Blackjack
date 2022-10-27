@@ -1,3 +1,5 @@
+package BlackjackApp;
+
 public class Card {
     private String suite;
     private int value;

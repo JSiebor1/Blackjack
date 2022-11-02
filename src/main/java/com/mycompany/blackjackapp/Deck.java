@@ -1,4 +1,4 @@
-package BlackjackApp;
+package com.mycompany.blackjackapp;
 
 import java.util.concurrent.ThreadLocalRandom;
 

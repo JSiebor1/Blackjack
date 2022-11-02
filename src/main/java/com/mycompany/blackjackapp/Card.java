@@ -1,4 +1,4 @@
-package BlackjackApp;
+package com.mycompany.blackjackapp;
 
 public class Card {
     private String suit;

@@ -3,6 +3,6 @@ package com.mycompany.blackjackapp;
 public class Main {
 
     public static void main(String[] args) {
-        new Deck();
+        new GUI();
     }
 }

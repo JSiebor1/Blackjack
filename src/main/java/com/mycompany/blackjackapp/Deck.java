@@ -9,7 +9,6 @@ public final class Deck {
 
     public Deck() {
         deck = new Card[deckSize];
-
         genDeck(deck);
     }
 
@@ -25,20 +24,7 @@ public final class Deck {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
-    public void genDeck(Card[] deck) {
-        // creates an array of cards
-        for (int i = 0; i < deck.length; i++) {
-            deck[i] = new Card();
-        }
-
-        // initializes values 1-13
-        for (int i = 0, n = 1; i < deck.length; i++, n++) {
-            if (n > deck.length / 4) {
-                n = 1;
-            }
-            deck[i].setValue(n);
-        }
-
+    public Card[] genSuit(Card[] deck) {
         // assigns suits
         String suit = "Hearts";
         for (int i = 0; i < deck.length; i++) {
@@ -57,14 +43,36 @@ public final class Deck {
             }
             deck[i].setSuit(suit);
         }
+        return deck;
+    }
 
-        /*
-         * 1=ace
-         * jack=10 (11)
-         * queen=10 (12)
-         * king=10 (13)
-         */
-        // assigns names
+    public Card[] genValue(Card[] deck, boolean ten) {
+        // initializes values 1-13
+        if (!ten) {
+            for (int i = 0, n = 1; i < deck.length; i++, n++) {
+                if (n > deck.length / 4) {
+                    n = 1;
+                }
+                deck[i].setValue(n);
+            }
+        } else {
+            for (Card deck1 : deck) {
+                if (deck1.getValue() > 10) {
+                    deck1.setValue(10);
+                }
+            }
+        }
+
+        return deck;
+    }
+
+    /*
+     * 1=ace
+     * jack=10 (11)
+     * queen=10 (12)
+     * king=10 (13)
+     */
+    public Card[] genName(Card[] deck) {
         for (Card deck1 : deck) {
             switch (deck1.getValue()) {
                 case 1:
@@ -108,15 +116,15 @@ public final class Deck {
                     break;
             }
         }
+        return deck;
+    }
 
-        // set courts to 10
-        for (Card deck1 : deck) {
-            if (deck1.getValue() > 10) {
-                deck1.setValue(10);
-            }
+    public void genDeck(Card[] deck) {
+        for (int i = 0; i < deck.length; i++) {
+            deck[i] = new Card();
         }
 
-        setDeck(shuffle(deck));
+        setDeck(shuffle(genValue(genSuit(genName(genValue(deck, false))), true)));
     }
 
     public Card[] shuffle(Card[] deck) {

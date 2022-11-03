@@ -2,7 +2,8 @@ package com.mycompany.blackjackapp;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Deck {
+public final class Deck {
+
     private final int deckSize = 52;
     private Card[] deck;
 
@@ -32,20 +33,28 @@ public class Deck {
 
         // initializes values 1-13
         for (int i = 0, n = 1; i < deck.length; i++, n++) {
-            if (n > deck.length / 4)
+            if (n > deck.length / 4) {
                 n = 1;
+            }
             deck[i].setValue(n);
         }
 
         // assigns suits
         String suit = "Hearts";
         for (int i = 0; i < deck.length; i++) {
-            if (i / (deck.length / 4) == 1)
-                suit = "Clubs";
-            else if (i / (deck.length / 4) == 2)
-                suit = "Spades";
-            else if (i / (deck.length / 4) == 3)
-                suit = "Diamonds";
+            switch (i / (deck.length / 4)) {
+                case 1:
+                    suit = "Clubs";
+                    break;
+                case 2:
+                    suit = "Spades";
+                    break;
+                case 3:
+                    suit = "Diamonds";
+                    break;
+                default:
+                    break;
+            }
             deck[i].setSuit(suit);
         }
 
@@ -55,63 +64,63 @@ public class Deck {
          * queen=10 (12)
          * king=10 (13)
          */
-
         // assigns names
-        for (int i = 0; i < deck.length; i++) {
-            switch (deck[i].getValue()) {
+        for (Card deck1 : deck) {
+            switch (deck1.getValue()) {
                 case 1:
-                    deck[i].setName("Ace");
+                    deck1.setName("Ace");
                     break;
                 case 2:
-                    deck[i].setName("Two");
+                    deck1.setName("Two");
                     break;
                 case 3:
-                    deck[i].setName("Three");
+                    deck1.setName("Three");
                     break;
                 case 4:
-                    deck[i].setName("Four");
+                    deck1.setName("Four");
                     break;
                 case 5:
-                    deck[i].setName("Five");
+                    deck1.setName("Five");
                     break;
                 case 6:
-                    deck[i].setName("Six");
+                    deck1.setName("Six");
                     break;
                 case 7:
-                    deck[i].setName("Seven");
+                    deck1.setName("Seven");
                     break;
                 case 8:
-                    deck[i].setName("Eight");
+                    deck1.setName("Eight");
                     break;
                 case 9:
-                    deck[i].setName("Nine");
+                    deck1.setName("Nine");
                     break;
                 case 10:
-                    deck[i].setName("Ten");
+                    deck1.setName("Ten");
                     break;
                 case 11:
-                    deck[i].setName("Jack");
+                    deck1.setName("Jack");
                     break;
                 case 12:
-                    deck[i].setName("Queen");
+                    deck1.setName("Queen");
                     break;
                 case 13:
-                    deck[i].setName("King");
+                    deck1.setName("King");
                     break;
             }
         }
 
         // set courts to 10
-        for (int i = 0; i < deck.length; i++) {
-            if (deck[i].getValue() > 10)
-                deck[i].setValue(10);
+        for (Card deck1 : deck) {
+            if (deck1.getValue() > 10) {
+                deck1.setValue(10);
+            }
         }
 
         setDeck(shuffle(deck));
     }
 
     public Card[] shuffle(Card[] deck) {
-        Card temp = new Card();
+        Card temp;
         for (int i = 0; i < deck.length * 10; i++) {
             int x = genRand(0, deck.length - 1);
             int y = genRand(0, deck.length - 1);

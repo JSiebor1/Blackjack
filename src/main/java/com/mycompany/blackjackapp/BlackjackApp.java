@@ -1,13 +1,16 @@
 package com.mycompany.blackjackapp;
 
+import java.util.ArrayList;
+
 public class BlackjackApp {
 
     private Deck deckClass;
     private Card[] deck;
     private int playerValue;
     private int dealerValue;
-    private int points;
     private int count;
+    private ArrayList<Card> playerHand;
+    private ArrayList<Card> dealerHand;
 
     public BlackjackApp(int points) {
         deckClass = new Deck();
@@ -16,10 +19,10 @@ public class BlackjackApp {
         playerValue = 0;
         dealerValue = 0;
 
-        this.points = points;
-        int count = 0;
+        count = 0;
 
-        draw();
+        playerHand = new ArrayList<Card>();
+        dealerHand = new ArrayList<Card>();
     }
 
     public void calcValue(int x, boolean isPlayer) {
@@ -29,9 +32,17 @@ public class BlackjackApp {
             dealerValue += x;
         }
     }
+    
+    public void changeAceValue(ArrayList<Card> hand, int value) {
+        for(int i = 0; i < hand.size(); i++) {
+            if(hand.get(i).getName().equals("Ace") && hand.get(i).getValue() == 11) {
+                hand.get(i).setValue(1);
+            }
+        }
+    }
 
-    public boolean isAce(Card c) {
-        return c.getName().equals("Ace");
+    public boolean over21(int value) {
+        return value > 21;
     }
 
     public Card draw() {
@@ -43,11 +54,22 @@ public class BlackjackApp {
 
     }
 
+    // draw and add card to playerHand
+    public void hit() {
+        playerHand.add(draw());
+    }
+
     public void dealerTurn() {
 
     }
 
     public void play() {
+        playerHand.add(draw());
+        dealerHand.add(draw());
+        playerHand.add(draw());
+        dealerHand.add(draw());
+        
+        
 
     }
 }

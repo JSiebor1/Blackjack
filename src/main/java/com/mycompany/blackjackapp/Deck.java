@@ -66,6 +66,17 @@ public final class Deck {
         return deck;
     }
 
+    // sets value of Aces to 11
+    public Card[] genValue(Card[] deck) {
+        for (Card deck1 : deck) {
+            if (deck1.getValue() == 1) {
+                deck1.setValue(11);
+            }
+        }
+
+        return deck;
+    }
+
     /*
      * 1=ace
      * jack=10 (11)
@@ -119,14 +130,6 @@ public final class Deck {
         return deck;
     }
 
-    public void genDeck(Card[] deck) {
-        for (int i = 0; i < deck.length; i++) {
-            deck[i] = new Card();
-        }
-
-        setDeck(shuffle(genValue(genSuit(genName(genValue(deck, false))), true)));
-    }
-
     public Card[] shuffle(Card[] deck) {
         Card temp;
         for (int i = 0; i < deck.length * 10; i++) {
@@ -139,6 +142,14 @@ public final class Deck {
         }
 
         return deck;
+    }
+
+    public void genDeck(Card[] deck) {
+        for (int i = 0; i < deck.length; i++) {
+            deck[i] = new Card();
+        }
+
+        setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
     }
 
 }

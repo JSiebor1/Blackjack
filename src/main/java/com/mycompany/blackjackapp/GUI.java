@@ -2,7 +2,7 @@ package com.mycompany.blackjackapp;
 
 public class GUI {
 
-    int points;
+    protected int points;
     BlackjackApp round;
 
     public GUI() {

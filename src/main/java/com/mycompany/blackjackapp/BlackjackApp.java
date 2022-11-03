@@ -23,19 +23,21 @@ public class BlackjackApp {
 
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
+        
+        play();
     }
 
-    public void calcValue(int x, boolean isPlayer) {
-        if (isPlayer) {
-            playerValue += x;
-        } else {
-            dealerValue += x;
+    public int calcValue(ArrayList<Card> hand) {
+        int x = 0;
+        for (int i = 0; i < hand.size(); i++) {
+            x += hand.get(i).getValue();
         }
+        return x;
     }
-    
+
     public void changeAceValue(ArrayList<Card> hand, int value) {
-        for(int i = 0; i < hand.size(); i++) {
-            if(hand.get(i).getName().equals("Ace") && hand.get(i).getValue() == 11) {
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).getName().equals("Ace") && hand.get(i).getValue() == 11) {
                 hand.get(i).setValue(1);
             }
         }
@@ -43,6 +45,10 @@ public class BlackjackApp {
 
     public boolean over21(int value) {
         return value > 21;
+    }
+
+    public boolean hasBlackjack(int value) {
+        return value == 21;
     }
 
     public Card draw() {
@@ -64,11 +70,27 @@ public class BlackjackApp {
     }
 
     public void play() {
+        boolean playerBlackjack = false;
+        boolean dealerBlackjack = false;
+        Card dealerFlip;
+        
         playerHand.add(draw());
-        dealerHand.add(draw());
+        dealerFlip = draw();
         playerHand.add(draw());
         dealerHand.add(draw());
         
+        System.out.println("Player Hand: ");
+        for(int i = 0; i < playerHand.size(); i++) {
+            System.out.println(playerHand.get(i).toString());
+        }
+        
+        System.out.println("\nDealer Hand: ");
+        for(int i = 0; i < dealerHand.size(); i++) {
+            System.out.println(dealerHand.get(i).toString());
+        }
+
+        playerBlackjack = hasBlackjack(calcValue(playerHand));
+        dealerBlackjack = hasBlackjack(calcValue(dealerHand));
         
 
     }

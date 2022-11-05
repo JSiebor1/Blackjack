@@ -1,6 +1,7 @@
 package com.mycompany.blackjackapp;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BlackjackApp {
 
@@ -23,7 +24,7 @@ public class BlackjackApp {
 
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
-        
+
         play();
     }
 
@@ -56,17 +57,20 @@ public class BlackjackApp {
         return deck[count - 1];
     }
 
-    public void playerTurn(String str) {
-
+    // draw and add card to hand
+    public void hit(ArrayList<Card> hand) {
+        System.out.println("hit");
+        hand.add(draw());
     }
 
-    // draw and add card to playerHand
-    public void hit() {
-        playerHand.add(draw());
+    public void stand() {
+        System.out.println("stand");
     }
 
-    public void dealerTurn() {
-
+    public void displayHand(ArrayList<Card> hand) {
+        for (int i = 0; i < hand.size(); i++) {
+            System.out.println(hand.get(i).toString() + " Value: " + hand.get(i).getValue());
+        }
     }
 
     public void play() {
@@ -78,20 +82,36 @@ public class BlackjackApp {
         dealerFlip = draw();
         playerHand.add(draw());
         dealerHand.add(draw());
-        
-        System.out.println("Player Hand: ");
-        for(int i = 0; i < playerHand.size(); i++) {
-            System.out.println(playerHand.get(i).toString());
-        }
-        
-        System.out.println("\nDealer Hand: ");
-        for(int i = 0; i < dealerHand.size(); i++) {
-            System.out.println(dealerHand.get(i).toString());
-        }
 
         playerBlackjack = hasBlackjack(calcValue(playerHand));
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
-        
+
+        System.out.println("Player Hand: ");
+        for (int i = 0; i < playerHand.size(); i++) {
+            System.out.println(playerHand.get(i).toString() + " " + playerHand.get(i).getValue());
+        }
+
+        if (playerBlackjack) {
+            System.out.println("Player has blackjack");
+        }
+
+        System.out.println("\nDealer Hand: ");
+        for (int i = 0; i < dealerHand.size(); i++) {
+            System.out.println(dealerHand.get(i).toString() + " " + dealerHand.get(i).getValue());
+        }
+
+        String input = "";
+        Scanner scnr = new Scanner(System.in);
+        System.out.print("> ");
+        input = scnr.nextLine().toLowerCase();
+
+        if (input.equals("hit")) {
+            hit(playerHand);
+        }
+
+        if (input.equals("stand")) {
+            stand();
+        }
 
     }
 }

@@ -25,7 +25,6 @@ public final class Deck {
     }
 
     public Card[] genSuit(Card[] deck) {
-        // assigns suits
         String suit = "Hearts";
         for (int i = 0; i < deck.length; i++) {
             switch (i / (deck.length / 4)) {
@@ -46,8 +45,8 @@ public final class Deck {
         return deck;
     }
 
+    // initializes values 1-13
     public Card[] genValue(Card[] deck, boolean ten) {
-        // initializes values 1-13
         if (!ten) {
             for (int i = 0, n = 1; i < deck.length; i++, n++) {
                 if (n > deck.length / 4) {

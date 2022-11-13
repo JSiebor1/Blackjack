@@ -1,4 +1,4 @@
-package com.mycompany.blackjackapp;
+package blackjackapp;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -78,6 +78,7 @@ public class BlackjackApp {
         boolean dealerBlackjack = false;
         Card dealerFlip;
         
+        
         playerHand.add(draw());
         dealerFlip = draw();
         playerHand.add(draw());
@@ -87,20 +88,17 @@ public class BlackjackApp {
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
 
         System.out.println("Player Hand: ");
-        for (int i = 0; i < playerHand.size(); i++) {
-            System.out.println(playerHand.get(i).toString() + " " + playerHand.get(i).getValue());
-        }
+        displayHand(playerHand);
 
         if (playerBlackjack) {
             System.out.println("Player has blackjack");
         }
 
         System.out.println("\nDealer Hand: ");
-        for (int i = 0; i < dealerHand.size(); i++) {
-            System.out.println(dealerHand.get(i).toString() + " " + dealerHand.get(i).getValue());
-        }
+        displayHand(dealerHand);
 
-        String input = "";
+
+        String input;
         Scanner scnr = new Scanner(System.in);
         System.out.print("> ");
         input = scnr.nextLine().toLowerCase();

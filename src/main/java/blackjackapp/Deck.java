@@ -1,6 +1,7 @@
-package com.mycompany.blackjackapp;
+package blackjackapp;
 
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.image.Image;
 
 public final class Deck {
 
@@ -25,17 +26,17 @@ public final class Deck {
     }
 
     public Card[] genSuit(Card[] deck) {
-        String suit = "Hearts";
+        String suit = "hearts";
         for (int i = 0; i < deck.length; i++) {
             switch (i / (deck.length / 4)) {
                 case 1:
-                    suit = "Clubs";
+                    suit = "clubs";
                     break;
                 case 2:
-                    suit = "Spades";
+                    suit = "spades";
                     break;
                 case 3:
-                    suit = "Diamonds";
+                    suit = "diamonds";
                     break;
                 default:
                     break;
@@ -86,46 +87,55 @@ public final class Deck {
         for (Card deck1 : deck) {
             switch (deck1.getValue()) {
                 case 1:
-                    deck1.setName("Ace");
+                    deck1.setName("ace");
                     break;
                 case 2:
-                    deck1.setName("Two");
+                    deck1.setName("2");
                     break;
                 case 3:
-                    deck1.setName("Three");
+                    deck1.setName("3");
                     break;
                 case 4:
-                    deck1.setName("Four");
+                    deck1.setName("4");
                     break;
                 case 5:
-                    deck1.setName("Five");
+                    deck1.setName("5");
                     break;
                 case 6:
-                    deck1.setName("Six");
+                    deck1.setName("6");
                     break;
                 case 7:
-                    deck1.setName("Seven");
+                    deck1.setName("7");
                     break;
                 case 8:
-                    deck1.setName("Eight");
+                    deck1.setName("8");
                     break;
                 case 9:
-                    deck1.setName("Nine");
+                    deck1.setName("9");
                     break;
                 case 10:
-                    deck1.setName("Ten");
+                    deck1.setName("10");
                     break;
                 case 11:
-                    deck1.setName("Jack");
+                    deck1.setName("jack");
                     break;
                 case 12:
-                    deck1.setName("Queen");
+                    deck1.setName("queen");
                     break;
                 case 13:
-                    deck1.setName("King");
+                    deck1.setName("king");
                     break;
             }
         }
+        return deck;
+    }
+
+    public Card[] genImage(Card[] deck) {
+        for (Card deck1 : deck) {
+            //System.out.println("./images/" + deck1.toString() + ".png");
+            //deck1.setImage(new Image("./images/" + deck1.toString() + ".png"));
+        }
+
         return deck;
     }
 
@@ -148,7 +158,7 @@ public final class Deck {
             deck[i] = new Card();
         }
 
-        setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
+        setDeck(shuffle(genImage(genValue(genValue(genSuit(genName(genValue(deck, false))), true)))));
     }
 
 }

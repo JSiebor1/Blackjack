@@ -1,4 +1,4 @@
-package com.mycompany.blackjackapp;
+package blackjackapp;
 
 public class GUI {
 

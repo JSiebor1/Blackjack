@@ -6,13 +6,13 @@ public class Card {
     private String suit;
     private int value;
     private String name;
-    private Image image;
+    // private Image image;
 
     public Card() {
         suit = "";
         value = 0;
         name = "";
-        image = null;
+        // image = null;
     }
 
     public String getSuit() {
@@ -39,16 +39,16 @@ public class Card {
         this.name = name;
     }
     
-    public Image getImage() {
-        return image;
-    }
-    
-    public void setImage(Image image) {
-        this.image = image;
-    }
+//    public Image getImage() {
+//        return image;
+//    }
+//    
+//    public void setImage(Image image) {
+//        this.image = image;
+//    }
 
     @Override
     public String toString() {
-        return getName() + "_of_" + getSuit();
+        return getName() + " of " + getSuit();
     }
 }

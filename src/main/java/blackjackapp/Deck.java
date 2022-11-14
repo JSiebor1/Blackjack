@@ -130,14 +130,14 @@ public final class Deck {
         return deck;
     }
 
-    public Card[] genImage(Card[] deck) {
-        for (Card deck1 : deck) {
-            //System.out.println("./images/" + deck1.toString() + ".png");
-            //deck1.setImage(new Image("./images/" + deck1.toString() + ".png"));
-        }
-
-        return deck;
-    }
+//    public Card[] genImage(Card[] deck) {
+//        for (Card deck1 : deck) {
+//            //System.out.println("/blackjackapp/images/" + deck1.toString() + ".png");
+//            //deck1.setImage(new Image("/blackjackapp/images/" + deck1.toString() + ".png"));
+//        }
+//
+//        return deck;
+//    }
 
     public Card[] shuffle(Card[] deck) {
         Card temp;
@@ -158,7 +158,7 @@ public final class Deck {
             deck[i] = new Card();
         }
 
-        setDeck(shuffle(genImage(genValue(genValue(genSuit(genName(genValue(deck, false))), true)))));
+        setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
     }
 
 }

@@ -36,9 +36,18 @@ public class BlackjackApp {
         return x;
     }
 
-    public void changeAceValue(ArrayList<Card> hand, int value) {
+    public boolean hasSoftAce(ArrayList<Card> hand) {
         for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).getName().equals("Ace") && hand.get(i).getValue() == 11) {
+            if (hand.get(i).getName().equals("ace") && hand.get(i).getValue() == 11) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void changeAceValue(ArrayList<Card> hand) {
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).getName().equals("ace") && hand.get(i).getValue() == 11) {
                 hand.get(i).setValue(1);
             }
         }
@@ -46,6 +55,10 @@ public class BlackjackApp {
 
     public boolean over21(int value) {
         return value > 21;
+    }
+
+    public boolean over16(int value) {
+        return value > 16;
     }
 
     public boolean hasBlackjack(int value) {
@@ -57,59 +70,108 @@ public class BlackjackApp {
         return deck[count - 1];
     }
 
-    // draw and add card to hand
     public void hit(ArrayList<Card> hand) {
-        System.out.println("hit");
         hand.add(draw());
     }
 
-    public void stand() {
-        System.out.println("stand");
+    public boolean stand() {
+        return true;
     }
 
-    public void displayHand(ArrayList<Card> hand) {
+    public void printHand(String who, ArrayList<Card> hand) {
+        System.out.println(who + "'s hand");
         for (int i = 0; i < hand.size(); i++) {
-            System.out.println(hand.get(i).toString() + " Value: " + hand.get(i).getValue());
+            System.out.println(hand.get(i).toString());
         }
+    }
+
+    public void printHands() {
+        printHand("Player", playerHand);
+        System.out.println();
+        printHand("Dealer", dealerHand);
     }
 
     public void play() {
         boolean playerBlackjack = false;
+        boolean playerBust = false;
+        boolean stand = false;
+
         boolean dealerBlackjack = false;
+        boolean dealerBust = false;
         Card dealerFlip;
-        
-        
+
+        String input;
+        Scanner scnr = new Scanner(System.in);
+
         playerHand.add(draw());
         dealerFlip = draw();
         playerHand.add(draw());
         dealerHand.add(draw());
 
+        printHands();
+
         playerBlackjack = hasBlackjack(calcValue(playerHand));
-        dealerBlackjack = hasBlackjack(calcValue(dealerHand));
-
-        System.out.println("Player Hand: ");
-        displayHand(playerHand);
-
         if (playerBlackjack) {
-            System.out.println("Player has blackjack");
+            System.out.println('\n' + "Player has blackjack");
         }
 
-        System.out.println("\nDealer Hand: ");
-        displayHand(dealerHand);
+        while (!playerBust && !stand && !playerBlackjack) {
+            System.out.print("> ");
 
+            input = scnr.nextLine().toLowerCase();
 
-        String input;
-        Scanner scnr = new Scanner(System.in);
-        System.out.print("> ");
-        input = scnr.nextLine().toLowerCase();
+            if (input.equals("hit")) {
+                hit(playerHand);
+                if (hasSoftAce(playerHand) && over21(calcValue(playerHand))) {
+                    changeAceValue(playerHand);
+                }
+                playerBust = over21(calcValue(playerHand));
+            }
 
-        if (input.equals("hit")) {
-            hit(playerHand);
+            if (input.equals("stand")) {
+                stand = stand();
+            }
+
+            System.out.println();
+            printHands();
+
+            if (playerBust) {
+                System.out.println('\n' + "Player busts");
+            }
         }
 
-        if (input.equals("stand")) {
-            stand();
+        dealerHand.add(dealerFlip);
+        dealerBlackjack = hasBlackjack(calcValue(dealerHand));
+        if (dealerBlackjack) {
+            System.out.println('\n' + "Dealer has blackjack");
         }
 
+        if (!playerBust && !playerBlackjack) {
+            System.out.println();
+            printHands();
+            while (!over16(calcValue(dealerHand)) && !dealerBlackjack) {
+                hit(dealerHand);
+
+                if (hasSoftAce(dealerHand) && over21(calcValue(dealerHand))) {
+                    changeAceValue(dealerHand);
+                }
+                dealerBust = over21(calcValue(dealerHand));
+
+                if (dealerBust) {
+                    System.out.println('\n' + "Dealer busts");
+                }
+
+                System.out.println();
+                printHands();
+            }
+        }
+
+        if (dealerBust || !playerBust && calcValue(playerHand) > calcValue(dealerHand)) {
+            System.out.println('\n' + "Player wins");
+        } else if (calcValue(playerHand) == calcValue(dealerHand)) {
+            System.out.println('\n' + "Push");
+        } else {
+            System.out.println('\n' + "Dealer wins");
+        }
     }
 }

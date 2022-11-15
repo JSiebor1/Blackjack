@@ -5,17 +5,18 @@ import java.util.Scanner;
 
 public class BlackjackApp {
 
-    private Deck deckClass;
     private Card[] deck;
     private int playerValue;
     private int dealerValue;
     private int count;
     private ArrayList<Card> playerHand;
     private ArrayList<Card> dealerHand;
+    private Scanner scnr;
+    private int wager;
+    private int credits;
 
-    public BlackjackApp(int points) {
-        deckClass = new Deck();
-        deck = deckClass.getDeck();
+    public BlackjackApp() {
+        deck = new Deck().getDeck();
 
         playerValue = 0;
         dealerValue = 0;
@@ -25,7 +26,12 @@ public class BlackjackApp {
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
 
-        play();
+        scnr = new Scanner(System.in);
+        wager = 0;
+        credits = 2500;
+
+        System.out.println("Minimum bet is 100 credits.");
+        newGame();
     }
 
     public int calcValue(ArrayList<Card> hand) {
@@ -89,6 +95,17 @@ public class BlackjackApp {
         printHand("Player", playerHand);
         System.out.println();
         printHand("Dealer", dealerHand);
+    }
+
+    public void printCredits() {
+        System.out.println("Available credits: " + credits);
+    }
+
+    public void inputWager() {
+        while (wager < 100 && wager > credits) {
+            System.out.print("Input a wager: " + '\n' + "> ");
+            wager = scnr.nextInt();
+        }
     }
 
     public void play() {
@@ -168,10 +185,30 @@ public class BlackjackApp {
 
         if (dealerBust || !playerBust && calcValue(playerHand) > calcValue(dealerHand)) {
             System.out.println('\n' + "Player wins");
+            credits += wager;
         } else if (calcValue(playerHand) == calcValue(dealerHand)) {
             System.out.println('\n' + "Push");
+            credits += 0;
         } else {
             System.out.println('\n' + "Dealer wins");
+            credits -= wager;
         }
+    }
+
+    public void newGame() {
+        while (credits > 0) {
+            printCredits();
+            inputWager();
+            System.out.println();
+            play();
+
+            wager = 0;
+
+            deck = new Deck().getDeck();
+
+            playerHand.clear();
+            dealerHand.clear();
+        }
+        System.out.println("Out of credits.");
     }
 }

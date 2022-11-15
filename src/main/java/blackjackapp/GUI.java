@@ -2,17 +2,14 @@ package blackjackapp;
 
 public class GUI {
 
-    protected int points;
     private BlackjackApp round;
 
     public GUI() {
-        points = 1000;
-        
-        newRound();
+        begin();
     }
 
-    private void newRound() {
-        round = new BlackjackApp(points);
+    private void begin() {
+        round = new BlackjackApp();
     }
 
 }

@@ -11,9 +11,9 @@ public class BlackjackApp {
     private int count;
     private ArrayList<Card> playerHand;
     private ArrayList<Card> dealerHand;
-    private Scanner scnr;
     private int wager;
     private int credits;
+    private Scanner scnr;
 
     public BlackjackApp() {
         deck = new Deck().getDeck();
@@ -26,9 +26,10 @@ public class BlackjackApp {
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
 
-        scnr = new Scanner(System.in);
         wager = 0;
         credits = 2500;
+
+        scnr = new Scanner(System.in);
 
         System.out.println("Minimum bet is 100 credits.");
         newGame();
@@ -102,7 +103,7 @@ public class BlackjackApp {
     }
 
     public void inputWager() {
-        while (wager < 100 && wager > credits) {
+        while (wager < 100 || wager > credits) {
             System.out.print("Input a wager: " + '\n' + "> ");
             wager = scnr.nextInt();
         }
@@ -118,7 +119,7 @@ public class BlackjackApp {
         Card dealerFlip;
 
         String input;
-        Scanner scnr = new Scanner(System.in);
+        boolean split;
 
         playerHand.add(draw());
         dealerFlip = draw();
@@ -127,14 +128,22 @@ public class BlackjackApp {
 
         printHands();
 
+        // calculates blackjack
         playerBlackjack = hasBlackjack(calcValue(playerHand));
         if (playerBlackjack) {
             System.out.println('\n' + "Player has blackjack");
         }
 
+        // split
+        if (playerHand.get(0).getName().equals(playerHand.get(1).getName())) {
+            System.out.println("Split your hand? Y/N");
+            input = scnr.nextLine().toLowerCase();
+            split = input.equals("y");
+        }
+
+        // player's turn
         while (!playerBust && !stand && !playerBlackjack) {
             System.out.print("> ");
-
             input = scnr.nextLine().toLowerCase();
 
             if (input.equals("hit")) {
@@ -158,6 +167,7 @@ public class BlackjackApp {
         }
 
         dealerHand.add(dealerFlip);
+        printHands();
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
         if (dealerBlackjack) {
             System.out.println('\n' + "Dealer has blackjack");
@@ -174,10 +184,9 @@ public class BlackjackApp {
                 }
                 dealerBust = over21(calcValue(dealerHand));
 
-                if (dealerBust) {
-                    System.out.println('\n' + "Dealer busts");
-                }
-
+//                if (dealerBust) {
+//                    System.out.println('\n' + "Dealer busts");
+//                }
                 System.out.println();
                 printHands();
             }

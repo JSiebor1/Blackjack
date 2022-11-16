@@ -31,7 +31,6 @@ public class BlackjackApp {
 
         scnr = new Scanner(System.in);
 
-        System.out.println("Minimum bet is 100 credits.");
         newGame();
     }
 
@@ -144,7 +143,7 @@ public class BlackjackApp {
         // player's turn
         while (!playerBust && !stand && !playerBlackjack) {
             System.out.print("> ");
-            input = scnr.nextLine().toLowerCase();
+            input = scnr.next().toLowerCase();
 
             if (input.equals("hit")) {
                 hit(playerHand);
@@ -205,6 +204,7 @@ public class BlackjackApp {
     }
 
     public void newGame() {
+        System.out.println("Minimum bet is 100 credits.");
         while (credits > 0) {
             printCredits();
             inputWager();

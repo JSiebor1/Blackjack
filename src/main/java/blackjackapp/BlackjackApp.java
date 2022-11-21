@@ -34,7 +34,7 @@ public class BlackjackApp {
         newGame();
     }
 
-    public int calcValue(ArrayList<Card> hand) {
+    private int calcValue(ArrayList<Card> hand) {
         int x = 0;
         for (int i = 0; i < hand.size(); i++) {
             x += hand.get(i).getValue();
@@ -42,7 +42,7 @@ public class BlackjackApp {
         return x;
     }
 
-    public boolean hasSoftAce(ArrayList<Card> hand) {
+    private boolean hasSoftAce(ArrayList<Card> hand) {
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).getName().equals("ace") && hand.get(i).getValue() == 11) {
                 return true;
@@ -51,7 +51,7 @@ public class BlackjackApp {
         return false;
     }
 
-    public void changeAceValue(ArrayList<Card> hand) {
+    private void changeAceValue(ArrayList<Card> hand) {
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).getName().equals("ace") && hand.get(i).getValue() == 11) {
                 hand.get(i).setValue(1);
@@ -59,66 +59,65 @@ public class BlackjackApp {
         }
     }
 
-    public boolean over21(int value) {
+    private boolean over21(int value) {
         return value > 21;
     }
 
-    public boolean over16(int value) {
+    private boolean over16(int value) {
         return value > 16;
     }
 
-    public boolean hasBlackjack(int value) {
+    private boolean hasBlackjack(int value) {
         return value == 21;
     }
 
-    public Card draw() {
+    private Card draw() {
         count++;
         return deck[count - 1];
     }
 
-    public void hit(ArrayList<Card> hand) {
+    private void hit(ArrayList<Card> hand) {
         hand.add(draw());
     }
 
-    public boolean stand() {
+    private boolean stand() {
         return true;
     }
 
-    public void printHand(String who, ArrayList<Card> hand) {
+    private void printHand(String who, ArrayList<Card> hand) {
         System.out.println(who + "'s hand");
         for (int i = 0; i < hand.size(); i++) {
             System.out.println(hand.get(i).toString());
         }
     }
 
-    public void printHands() {
+    private void printHands() {
         printHand("Player", playerHand);
         System.out.println();
         printHand("Dealer", dealerHand);
     }
 
-    public void printCredits() {
+    private void printCredits() {
         System.out.println("Available credits: " + credits);
     }
 
-    public void inputWager() {
+    private void inputWager() {
         while (wager < 100 || wager > credits) {
             System.out.print("Input a wager: " + '\n' + "> ");
             wager = scnr.nextInt();
         }
     }
 
-    public void play() {
+    private void playRound() {
         boolean playerBlackjack = false;
         boolean playerBust = false;
-        boolean stand = false;
+        boolean playerStand = false;
 
         boolean dealerBlackjack = false;
         boolean dealerBust = false;
         Card dealerFlip;
 
         String input;
-        boolean split;
 
         playerHand.add(draw());
         dealerFlip = draw();
@@ -127,21 +126,10 @@ public class BlackjackApp {
 
         printHands();
 
-        // calculates blackjack
         playerBlackjack = hasBlackjack(calcValue(playerHand));
-        if (playerBlackjack) {
-            System.out.println('\n' + "Player has blackjack");
-        }
-
-        // split
-        if (playerHand.get(0).getName().equals(playerHand.get(1).getName())) {
-            System.out.println("Split your hand? Y/N");
-            input = scnr.nextLine().toLowerCase();
-            split = input.equals("y");
-        }
 
         // player's turn
-        while (!playerBust && !stand && !playerBlackjack) {
+        while (!playerBust && !playerStand && !playerBlackjack) {
             System.out.print("> ");
             input = scnr.next().toLowerCase();
 
@@ -152,27 +140,24 @@ public class BlackjackApp {
                 }
                 playerBust = over21(calcValue(playerHand));
             }
-
-            if (input.equals("stand")) {
-                stand = stand();
+            if(input.equals("stand")) {
+                playerStand = stand();
             }
 
             System.out.println();
             printHands();
-
-            if (playerBust) {
-                System.out.println('\n' + "Player busts");
-            }
         }
 
+        // dealer
         dealerHand.add(dealerFlip);
+        System.out.println();
         printHands();
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
         if (dealerBlackjack) {
             System.out.println('\n' + "Dealer has blackjack");
         }
 
-        if (!playerBust && !playerBlackjack) {
+        if (!playerBust && !playerBlackjack || playerStand) {
             System.out.println();
             printHands();
             while (!over16(calcValue(dealerHand)) && !dealerBlackjack) {
@@ -183,9 +168,6 @@ public class BlackjackApp {
                 }
                 dealerBust = over21(calcValue(dealerHand));
 
-//                if (dealerBust) {
-//                    System.out.println('\n' + "Dealer busts");
-//                }
                 System.out.println();
                 printHands();
             }
@@ -203,13 +185,13 @@ public class BlackjackApp {
         }
     }
 
-    public void newGame() {
+    private void newGame() {
         System.out.println("Minimum bet is 100 credits.");
         while (credits > 0) {
             printCredits();
             inputWager();
             System.out.println();
-            play();
+            playRound();
 
             wager = 0;
 

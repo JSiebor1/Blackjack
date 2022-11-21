@@ -132,8 +132,8 @@ public final class Deck {
 
 //    public Card[] genImage(Card[] deck) {
 //        for (Card deck1 : deck) {
-//            //System.out.println("/blackjackapp/images/" + deck1.toString() + ".png");
-//            //deck1.setImage(new Image("/blackjackapp/images/" + deck1.toString() + ".png"));
+//            System.out.println("images/" + deck1.toString() + ".png");
+//            deck1.setImage(new Image("images/" + deck1.toString() + ".png"));
 //        }
 //
 //        return deck;

@@ -1,7 +1,7 @@
 package blackjackapp;
 
 import java.util.concurrent.ThreadLocalRandom;
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 
 public final class Deck {
 
@@ -138,7 +138,6 @@ public final class Deck {
 //
 //        return deck;
 //    }
-
     public Card[] shuffle(Card[] deck) {
         Card temp;
         for (int i = 0; i < deck.length * 10; i++) {
@@ -160,11 +159,12 @@ public final class Deck {
 
         setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
     }
-    
-    public void toString(Card[] deck) {
-        for(Card deck1 : deck) {
-            System.out.println(deck1.toString());
-        }
-    }
 
+    public String toString(Card[] deck) {
+        String str = "";
+        for (Card deck1 : deck) {
+            str += deck1.toString() + '\n';
+        }
+        return str;
+    }
 }

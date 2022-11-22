@@ -3,7 +3,7 @@ package blackjackapp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BlackjackApp {
+public class BlackjackGame {
 
     private Card[] deck;
     private int playerValue;
@@ -15,7 +15,7 @@ public class BlackjackApp {
     private int credits;
     private Scanner scnr;
 
-    public BlackjackApp() {
+    public BlackjackGame() {
         deck = new Deck().getDeck();
 
         playerValue = 0;
@@ -84,19 +84,6 @@ public class BlackjackApp {
         return true;
     }
 
-    private void printHand(String who, ArrayList<Card> hand) {
-        System.out.println(who + "'s hand");
-        for (int i = 0; i < hand.size(); i++) {
-            System.out.println(hand.get(i).toString());
-        }
-    }
-
-    private void printHands() {
-        printHand("Player", playerHand);
-        System.out.println();
-        printHand("Dealer", dealerHand);
-    }
-
     private void printCredits() {
         System.out.println("Available credits: " + credits);
     }
@@ -124,7 +111,8 @@ public class BlackjackApp {
         playerHand.add(draw());
         dealerHand.add(draw());
 
-        printHands();
+        System.out.println(toString("Player", playerHand));
+        System.out.println(toString("Dealer", dealerHand));
 
         playerBlackjack = hasBlackjack(calcValue(playerHand));
 
@@ -140,26 +128,26 @@ public class BlackjackApp {
                 }
                 playerBust = over21(calcValue(playerHand));
             }
-            if(input.equals("stand")) {
+            if (input.equals("stand")) {
                 playerStand = stand();
             }
 
-            System.out.println();
-            printHands();
+            System.out.println(toString("Player", playerHand));
+            System.out.println(toString("Dealer", dealerHand));
         }
 
         // dealer
         dealerHand.add(dealerFlip);
-        System.out.println();
-        printHands();
+
+        System.out.println(toString("Player", playerHand));
+        System.out.println(toString("Dealer", dealerHand));
+
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
-        if (dealerBlackjack) {
-            System.out.println('\n' + "Dealer has blackjack");
-        }
 
         if (!playerBust && !playerBlackjack || playerStand) {
-            System.out.println();
-            printHands();
+            System.out.println(toString("Player", playerHand));
+            System.out.println(toString("Dealer", dealerHand));
+
             while (!over16(calcValue(dealerHand)) && !dealerBlackjack) {
                 hit(dealerHand);
 
@@ -168,19 +156,26 @@ public class BlackjackApp {
                 }
                 dealerBust = over21(calcValue(dealerHand));
 
-                System.out.println();
-                printHands();
+                System.out.println(toString("Player", playerHand));
+                System.out.println(toString("Dealer", dealerHand));
+                
+                // implements a delay of 1 second 
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
 
         if (dealerBust || !playerBust && calcValue(playerHand) > calcValue(dealerHand)) {
-            System.out.println('\n' + "Player wins");
+            System.out.println("Player wins");
             credits += wager;
         } else if (calcValue(playerHand) == calcValue(dealerHand)) {
-            System.out.println('\n' + "Push");
+            System.out.println("Push");
             credits += 0;
         } else {
-            System.out.println('\n' + "Dealer wins");
+            System.out.println("Dealer wins");
             credits -= wager;
         }
     }
@@ -201,5 +196,14 @@ public class BlackjackApp {
             dealerHand.clear();
         }
         System.out.println("Out of credits.");
+    }
+
+    public String toString(String player, ArrayList<Card> hand) {
+        String str = "";
+        str += player + "'s hand" + '\n';
+        for (int i = 0; i < hand.size(); i++) {
+            str += hand.get(i).toString();
+        }
+        return str;
     }
 }

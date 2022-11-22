@@ -1,15 +1,8 @@
 package blackjackapp;
 
-public class GUI {
-
-    private BlackjackApp round;
+public class GUI extends BlackjackGame {
 
     public GUI() {
-        begin();
+        super();
     }
-
-    private void begin() {
-        round = new BlackjackApp();
-    }
-
 }

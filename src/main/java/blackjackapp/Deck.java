@@ -160,5 +160,11 @@ public final class Deck {
 
         setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
     }
+    
+    public void toString(Card[] deck) {
+        for(Card deck1 : deck) {
+            System.out.println(deck1.toString());
+        }
+    }
 
 }

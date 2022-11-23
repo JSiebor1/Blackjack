@@ -202,7 +202,7 @@ public class BlackjackGame {
         String str = "";
         str += player + "'s hand" + '\n';
         for (int i = 0; i < hand.size(); i++) {
-            str += hand.get(i).toString();
+            str += hand.get(i).toString() + '\n';
         }
         return str;
     }

@@ -148,11 +148,6 @@ public final class Deck {
             deck[i] = new Card();
         }
 
-        // sets values of each card
-        // sets names of each card
-        // sets suits of each card
-        // set images of each card
-        // shuffle the card
         setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
     }
 

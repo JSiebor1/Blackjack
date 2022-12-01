@@ -144,6 +144,12 @@ public class BlackjackGame {
 
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         if (!playerBust && !playerBlackjack || playerStand) {
             System.out.println(toString("Player", playerHand));
             System.out.println(toString("Dealer", dealerHand));
@@ -158,7 +164,7 @@ public class BlackjackGame {
 
                 System.out.println(toString("Player", playerHand));
                 System.out.println(toString("Dealer", dealerHand));
-                
+
                 // implements a delay of 1 second 
                 try {
                     Thread.sleep(1000);

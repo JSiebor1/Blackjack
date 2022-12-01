@@ -49,6 +49,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return getName() + "_of_" + getSuit() + ".png";
+        return getName() + " of " + getSuit();
     }
 }

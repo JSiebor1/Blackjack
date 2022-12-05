@@ -32,8 +32,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        BlackjackApp game = new BlackjackApp();
         launch();
+        BlackjackApp game = new BlackjackApp();
     }
 
 }

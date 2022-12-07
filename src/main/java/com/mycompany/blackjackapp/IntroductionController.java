@@ -1,6 +1,5 @@
 package com.mycompany.blackjackapp;
 
-import com.mycompany.blackjackapp.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,6 +1,5 @@
 package com.mycompany.blackjackapp;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +13,7 @@ public class GameController extends BlackjackApp {
     @FXML
     private TextField wagerInput;
     @FXML
-    private Label totalCredits = new Label("Total Credits: " + credits);
+    private Label totalCredits;
 
 //    private void switchToPrimary() throws IOException {
 //        App.setRoot("primary");

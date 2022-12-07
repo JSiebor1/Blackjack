@@ -1,3 +1,5 @@
+com\mycompany\blackjackapp\IntroductionController.class
+com\mycompany\blackjackapp\GameController.class
 com\mycompany\blackjackapp\App.class
 module-info.class
 com\mycompany\blackjackapp\BlackjackApp.class

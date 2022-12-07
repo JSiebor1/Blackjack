@@ -11,8 +11,10 @@ public class BlackjackApp {
     private int count;
     private ArrayList<Card> playerHand;
     private ArrayList<Card> dealerHand;
-    private int wager;
-    private int credits;
+    
+    public int wager;
+    public int credits;
+    
     private Scanner scnr;
 
     public BlackjackApp() {
@@ -30,8 +32,6 @@ public class BlackjackApp {
         credits = 2500;
 
         scnr = new Scanner(System.in);
-
-        newGame();
     }
 
     private int calcValue(ArrayList<Card> hand) {

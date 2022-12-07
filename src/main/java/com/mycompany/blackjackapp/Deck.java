@@ -1,6 +1,7 @@
 package com.mycompany.blackjackapp;
 
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.image.Image;
 
 public final class Deck {
 
@@ -128,6 +129,15 @@ public final class Deck {
         }
         return deck;
     }
+    
+    public Card[] genImage(Card[] deck) {
+        for (Card card : deck) {
+            Image image = new Image(getClass().getResourceAsStream("images/" + card.toString()));
+            card.setImage(image);
+        }
+
+        return deck;
+    }
 
     public Card[] shuffle(Card[] deck) {
         Card temp;
@@ -148,7 +158,7 @@ public final class Deck {
             deck[i] = new Card();
         }
 
-        setDeck(shuffle(genValue(genValue(genSuit(genName(genValue(deck, false))), true))));
+        setDeck(shuffle(genImage(genValue(genValue(genSuit(genName(genValue(deck, false))), true)))));
     }
 
     public String toString(Card[] deck) {

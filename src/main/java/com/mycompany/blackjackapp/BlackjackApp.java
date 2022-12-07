@@ -32,6 +32,8 @@ public class BlackjackApp {
         credits = 2500;
 
         scnr = new Scanner(System.in);
+        
+        playRound();
     }
 
     private int calcValue(ArrayList<Card> hand) {

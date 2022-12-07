@@ -17,6 +17,8 @@ public class GameController extends BlackjackApp {
     private Label totalCredits;
     @FXML
     private AnchorPane wagerPane;
+    @FXML
+    private AnchorPane gamePane;
 
 //    private void switchToPrimary() throws IOException {
 //        App.setRoot("primary");

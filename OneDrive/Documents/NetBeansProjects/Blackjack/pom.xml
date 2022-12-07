@@ -80,4 +80,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>Blackjack</name>
 </project>

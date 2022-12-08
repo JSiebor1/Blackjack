@@ -9,6 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.blackjackapp.GameController">
    <children>
+      <Label fx:id="wagerDisplay" layoutX="11.0" layoutY="23.0" text="Wager: 0" />
       <Label fx:id="totalCredits" layoutX="11.0" layoutY="7.0" text="Total Credits: 2500" />
       <AnchorPane fx:id="wagerPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -51,8 +52,10 @@
             </HBox>
             <Label layoutX="32.0" layoutY="72.0" text="Dealer's Hand" />
             <Label layoutX="33.0" layoutY="191.0" text="Player's Hand" />
-            <Button fx:id="hitButton" layoutX="176.0" layoutY="321.0" mnemonicParsing="false" onAction="#hit" prefHeight="40.0" prefWidth="72.0" text="Hit" />
-            <Button fx:id="standButton" layoutX="328.0" layoutY="321.0" mnemonicParsing="false" onAction="#stand" prefHeight="40.0" prefWidth="72.0" text="Stand" />
+            <Button fx:id="hitButton" layoutX="191.0" layoutY="321.0" mnemonicParsing="false" onAction="#hit" prefHeight="40.0" prefWidth="72.0" text="Hit" />
+            <Button fx:id="standButton" layoutX="335.0" layoutY="321.0" mnemonicParsing="false" onAction="#stand" prefHeight="40.0" prefWidth="72.0" text="Stand" />
+            <Label fx:id="displayText" layoutX="435.0" layoutY="32.0" prefHeight="17.0" prefWidth="122.0" />
+            <Button fx:id="dealerDrawButton" layoutX="254.0" layoutY="321.0" mnemonicParsing="false" onAction="#dealerDraw" prefHeight="40.0" prefWidth="92.0" text="Dealer Draw" visible="false" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

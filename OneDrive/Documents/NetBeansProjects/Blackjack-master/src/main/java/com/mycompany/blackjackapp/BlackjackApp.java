@@ -1,7 +1,6 @@
 package com.mycompany.blackjackapp;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BlackjackApp {
 
@@ -140,7 +139,6 @@ public class BlackjackApp {
 
         playerHand.clear();
         dealerHand.clear();
-
     }
 
     public String toString(String player, ArrayList<Card> hand) {

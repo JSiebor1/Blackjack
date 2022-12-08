@@ -83,6 +83,14 @@ public class GameController extends BlackjackApp {
     private Label displayText;
     @FXML
     private Button dealerDrawButton;
+    @FXML
+    private AnchorPane endPane;
+    @FXML
+    private Button continueButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button goToEndButton;
 
     @FXML
     private void playGame(ActionEvent event) {
@@ -103,7 +111,6 @@ public class GameController extends BlackjackApp {
 
         playerBlackjack = hasBlackjack(calcValue(playerHand));
         if (playerBlackjack) {
-            displayText.setText("Player has Blackjack");
             hitButton.setVisible(false);
             standButton.setVisible(false);
 
@@ -155,7 +162,6 @@ public class GameController extends BlackjackApp {
         if (playerBust) {
             hitButton.setVisible(false);
             standButton.setVisible(false);
-            displayText.setText("Player busts");
 
             dealerTurn();
         }
@@ -173,15 +179,17 @@ public class GameController extends BlackjackApp {
 
     @Override
     public void dealerTurn() {
-        dealerDrawButton.setVisible(true);
-
         dCard1.setImage(dealerHand.get(0).getImage());
 
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
         if (dealerBlackjack) {
-            displayText.setText("Dealer has Blackjack");
+            calcWinner();
         }
-
+        if (playerBust) {
+            calcWinner();
+        } else {
+            dealerDrawButton.setVisible(true);
+        }
     }
 
     @FXML
@@ -222,9 +230,43 @@ public class GameController extends BlackjackApp {
                     changeAceValue(dealerHand);
                 }
                 dealerBust = over21(calcValue(dealerHand));
-
             }
+            dealerDrawButton.setVisible(false);
+            calcWinner();
+        }
+    }
+
+    @Override
+    public void calcWinner() {
+        super.calcWinner();
+        totalCredits.setText("Total Credits: " + credits);
+        wagerDisplay.setText("Wager: " + 0);
+
+        goToEndButton.setVisible(true);
+
+        if (winner == 1) {
+            displayText.setText("Player wins");
+        } else if (winner == 2) {
+            displayText.setText("Push");
+        } else if (winner == 3) {
+            displayText.setText("Dealer wins");
         }
 
+    }
+
+    @FXML
+    private void goToEnd(ActionEvent event) {
+        gamePane.setVisible(false);
+        endPane.setVisible(true);
+    }
+
+    @FXML
+    private void continuePlaying(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void exitGame(ActionEvent event) {
+        System.exit(0);
     }
 }

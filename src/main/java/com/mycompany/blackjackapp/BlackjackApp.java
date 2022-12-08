@@ -19,12 +19,14 @@ public class BlackjackApp {
     public int wager;
     public int credits;
 
-    boolean playerStand;
-    boolean playerBlackjack;
-    boolean playerBust;
+    public boolean playerStand;
+    public boolean playerBlackjack;
+    public boolean playerBust;
 
-    boolean dealerBlackjack;
-    boolean dealerBust;
+    public boolean dealerBlackjack;
+    public boolean dealerBust;
+
+    public int winner;
 
     private Scanner scnr;
 
@@ -47,6 +49,8 @@ public class BlackjackApp {
 
         dealerBlackjack = false;
         dealerBust = false;
+
+        winner = 0;
 
         scnr = new Scanner(System.in);
     }
@@ -210,16 +214,19 @@ public class BlackjackApp {
         }
     }
 
-    public void calcWager() {
+    public void calcWinner() {
         if (dealerBust || !playerBust && calcValue(playerHand) > calcValue(dealerHand)) {
             System.out.println("Player wins");
-            credits += wager;
+            credits += 2 * wager;
+            winner = 1;
         } else if (calcValue(playerHand) == calcValue(dealerHand)) {
             System.out.println("Push");
-            credits += 0;
+            credits += wager;
+            winner = 2;
         } else {
             System.out.println("Dealer wins");
-            credits -= wager;
+            credits -= 0;
+            winner = 3;
         }
     }
 

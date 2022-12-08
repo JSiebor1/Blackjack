@@ -5,16 +5,22 @@ import java.util.Scanner;
 
 public class BlackjackApp {
 
-    private Card[] deck;
+    public Card[] deck;
+
     private int playerValue;
     private int dealerValue;
     private int count;
-    private ArrayList<Card> playerHand;
-    private ArrayList<Card> dealerHand;
     
+    public int pHitCount;
+
+    public ArrayList<Card> playerHand;
+    public ArrayList<Card> dealerHand;
+
+    public Card dealerFlipped;
+
     public int wager;
     public int credits;
-    
+
     private Scanner scnr;
 
     public BlackjackApp() {
@@ -22,8 +28,9 @@ public class BlackjackApp {
 
         playerValue = 0;
         dealerValue = 0;
-
         count = 0;
+        
+        pHitCount = 0;
 
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
@@ -76,23 +83,33 @@ public class BlackjackApp {
         return deck[count - 1];
     }
 
-    private void hit(ArrayList<Card> hand) {
+    public void hit(ArrayList<Card> hand) {
         hand.add(draw());
     }
 
-    private boolean stand() {
+    public boolean stand() {
         return true;
     }
 
-    private void printCredits() {
-        System.out.println("Available credits: " + credits);
-    }
-
-    private void inputWager() {
-        while (wager < 100 || wager > credits) {
-            System.out.print("Input a wager: " + '\n' + "> ");
-            wager = scnr.nextInt();
-        }
+//    private void printCredits() {
+//        System.out.println("Available credits: " + credits);
+//    }
+//    private void inputWager() {
+//        while (wager < 100 || wager > credits) {
+//            System.out.print("Input a wager: " + '\n' + "> ");
+//            wager = scnr.nextInt();
+//        }
+//    }
+    public void deal() {
+        playerHand.add(draw());
+        pHitCount++;
+        
+        dealerFlipped = draw();
+        
+        playerHand.add(draw());
+        pHitCount++;
+        
+        dealerHand.add(draw());
     }
 
     private void playRound() {
@@ -102,14 +119,13 @@ public class BlackjackApp {
 
         boolean dealerBlackjack = false;
         boolean dealerBust = false;
-        Card dealerFlip;
 
         String input;
 
-        playerHand.add(draw());
-        dealerFlip = draw();
-        playerHand.add(draw());
-        dealerHand.add(draw());
+//        playerHand.add(draw());
+//        dealerFlipped = draw();
+//        playerHand.add(draw());
+//        dealerHand.add(draw());
 
         System.out.println(toString("Player", playerHand));
         System.out.println(toString("Dealer", dealerHand));
@@ -137,7 +153,7 @@ public class BlackjackApp {
         }
 
         // dealer
-        dealerHand.add(dealerFlip);
+        dealerHand.add(dealerFlipped);
 
         System.out.println(toString("Player", playerHand));
         System.out.println(toString("Dealer", dealerHand));
@@ -186,12 +202,9 @@ public class BlackjackApp {
         }
     }
 
-    private void newGame() {
+    public void newGame() {
         System.out.println("Minimum bet is 100 credits.");
         while (credits > 0) {
-            printCredits();
-            inputWager();
-            System.out.println();
             playRound();
 
             wager = 0;

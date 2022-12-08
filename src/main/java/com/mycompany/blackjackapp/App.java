@@ -19,6 +19,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("introduction"));
         stage.setScene(scene);
+        stage.setTitle("Blackjack App");
         stage.show();
     }
 

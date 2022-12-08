@@ -13,7 +13,7 @@
             <Font name="Algerian" size="24.0" />
          </font>
       </Label>
-      <TextArea layoutX="13.0" layoutY="46.0" prefHeight="302.0" prefWidth="576.0" text="Basics:&#10; - The goal of the user is to get as close or equal to a value of 21 as possible before standing.&#10; - The player and dealer will bust on a value greater than 21.&#10; - Players will be able to hit or stand, hitting will allow the user to add another card to their hand.&#10; - Standing will allow users to stop their hand, and allow the dealer to draw.&#10; - The dealer will stand on a &quot;hard 17.&quot;&#10;&#10;Rules:&#10; - The player must input a wager value greater than 0 and less than their total number of credits.&#10; - The player will have buttons to hit or stand.&#10; - The round will either be a win, loss, or push.&#10;" />
+      <TextArea editable="false" layoutX="13.0" layoutY="46.0" prefHeight="302.0" prefWidth="576.0" text="Basics:&#10; - The goal of the user is to get as close or equal to a value of 21 as possible before standing.&#10; - The player and dealer will bust on a value greater than 21.&#10; - Players will be able to hit or stand, hitting will allow the user to add another card to their hand.&#10; - Standing will allow users to stop their hand, and allow the dealer to draw.&#10; - The dealer will stand on a &quot;hard 17.&quot;&#10;&#10;Rules:&#10; - The player must input a wager value greater than 0 and less than their total number of credits.&#10; - The player will have buttons to hit or stand.&#10; - The round will either be a win, loss, or push.&#10;" />
       <Button fx:id="continueButton" layoutX="243.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToGame" text="Continue to Game" />
    </children>
 </AnchorPane>

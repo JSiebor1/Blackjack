@@ -129,7 +129,7 @@ public final class Deck {
         }
         return deck;
     }
-    
+
     public Card[] genImage(Card[] deck) {
         for (Card card : deck) {
             Image image = new Image(getClass().getResourceAsStream("images/" + card.toString()));

@@ -30,8 +30,6 @@ public class GameController extends BlackjackApp {
     @FXML
     private Button standButton;
     @FXML
-    private HBox dealerHandHBox;
-    @FXML
     private ImageView dCard1;
     @FXML
     private ImageView dCard2;
@@ -53,8 +51,6 @@ public class GameController extends BlackjackApp {
     private ImageView dCard10;
     @FXML
     private ImageView dCard11;
-    @FXML
-    private HBox playerHandHBox;
     @FXML
     private ImageView pCard1;
     @FXML
@@ -88,11 +84,15 @@ public class GameController extends BlackjackApp {
     @FXML
     private Button continueButton;
     @FXML
-    private Button exitButton;
-    @FXML
     private Button goToEndButton;
     @FXML
     private Label outOfCredits;
+    @FXML
+    private HBox dealerHandHBox;
+    @FXML
+    private HBox playerHandHBox;
+    @FXML
+    private Button exitButton;
 
     @FXML
     private void playGame(ActionEvent event) {

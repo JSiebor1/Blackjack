@@ -1,7 +1,0 @@
-com\mycompany\blackjackapp\App.class
-module-info.class
-com\mycompany\blackjackapp\BlackjackApp.class
-com\mycompany\blackjackapp\Card.class
-com\mycompany\blackjackapp\Deck.class
-com\mycompany\blackjackapp\PrimaryController.class
-com\mycompany\blackjackapp\SecondaryController.class

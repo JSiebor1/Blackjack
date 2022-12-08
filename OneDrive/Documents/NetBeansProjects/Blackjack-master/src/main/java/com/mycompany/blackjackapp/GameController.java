@@ -248,13 +248,12 @@ public class GameController extends BlackjackApp {
                 if (hasSoftAce(dealerHand) && over21(calcValue(dealerHand))) {
                     changeAceValue(dealerHand);
                 }
-                
+
                 dealerBust = over21(calcValue(dealerHand));
                 if (dealerBust) {
                     dealerDrawButton.setVisible(false);
                     calcWinner();
-                }
-                else if (over16(calcValue(dealerHand))) {
+                } else if (over16(calcValue(dealerHand))) {
                     dealerDrawButton.setVisible(false);
                     calcWinner();
                 }
@@ -289,8 +288,7 @@ public class GameController extends BlackjackApp {
     }
 
     @FXML
-    private void continuePlaying(ActionEvent event
-    ) {
+    private void continuePlaying(ActionEvent event) {
         if (credits != 0) {
             displayText.setText("");
             wagerInput.setText("");

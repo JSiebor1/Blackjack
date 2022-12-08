@@ -91,6 +91,8 @@ public class GameController extends BlackjackApp {
     private Button exitButton;
     @FXML
     private Button goToEndButton;
+    @FXML
+    private Label outOfCredits;
 
     @FXML
     private void playGame(ActionEvent event) {
@@ -166,6 +168,14 @@ public class GameController extends BlackjackApp {
             dealerTurn();
         }
 
+        if (calcValue(playerHand) == 21) {
+            playerStand = true;
+            hitButton.setVisible(false);
+            standButton.setVisible(false);
+
+            dealerTurn();
+        }
+
     }
 
     @FXML
@@ -177,15 +187,15 @@ public class GameController extends BlackjackApp {
         dealerTurn();
     }
 
-    @Override
     public void dealerTurn() {
         dCard1.setImage(dealerHand.get(0).getImage());
 
         dealerBlackjack = hasBlackjack(calcValue(dealerHand));
-        if (dealerBlackjack) {
+        if (over16(calcValue(dealerHand))) {
             calcWinner();
-        }
-        if (playerBust) {
+        } else if (dealerBlackjack) {
+            calcWinner();
+        } else if (playerBust) {
             calcWinner();
         } else {
             dealerDrawButton.setVisible(true);
@@ -194,9 +204,14 @@ public class GameController extends BlackjackApp {
 
     @FXML
     private void dealerDraw(ActionEvent event) {
-        if (!playerBust && !playerBlackjack || playerStand) {
+        if (!playerBust || playerBlackjack || playerStand) {
             if (!over16(calcValue(dealerHand)) && !dealerBlackjack) {
                 super.hit(dealerHand);
+
+                if (hasSoftAce(dealerHand) && over21(calcValue(dealerHand))) {
+                    changeAceValue(dealerHand);
+                }
+
                 dHitCount++;
                 if (dHitCount == 2) {
                     dCard3.setImage(dealerHand.get(dHitCount).getImage());
@@ -239,6 +254,7 @@ public class GameController extends BlackjackApp {
     @Override
     public void calcWinner() {
         super.calcWinner();
+
         totalCredits.setText("Total Credits: " + credits);
         wagerDisplay.setText("Wager: " + 0);
 
@@ -262,7 +278,48 @@ public class GameController extends BlackjackApp {
 
     @FXML
     private void continuePlaying(ActionEvent event) {
+        if (credits != 0) {
+            displayText.setText("");
+            wagerInput.setText("");
 
+            dHitCount = 1;
+            dCard1.setImage(null);
+            dCard2.setImage(null);
+            dCard3.setImage(null);
+            dCard4.setImage(null);
+            dCard5.setImage(null);
+            dCard6.setImage(null);
+            dCard7.setImage(null);
+            dCard8.setImage(null);
+            dCard9.setImage(null);
+            dCard10.setImage(null);
+            dCard11.setImage(null);
+
+            pHitCount = 1;
+            pCard1.setImage(null);
+            pCard2.setImage(null);
+            pCard3.setImage(null);
+            pCard4.setImage(null);
+            pCard5.setImage(null);
+            pCard6.setImage(null);
+            pCard7.setImage(null);
+            pCard8.setImage(null);
+            pCard9.setImage(null);
+            pCard10.setImage(null);
+            pCard11.setImage(null);
+
+            newGame();
+
+            endPane.setVisible(false);
+            wagerPane.setVisible(true);
+            goToEndButton.setVisible(false);
+
+            hitButton.setVisible(true);
+            standButton.setVisible(true);
+        } else {
+            continueButton.setVisible(false);
+            outOfCredits.setVisible(true);
+        }
     }
 
     @FXML

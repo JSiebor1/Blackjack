@@ -1,8 +1,7 @@
-module blackjackapp {
+module com.mycompany.blackjackapp {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.base;
 
-    opens blackjackapp to javafx.fxml;
-    exports blackjackapp;
+    opens com.mycompany.blackjackapp to javafx.fxml;
+    exports com.mycompany.blackjackapp;
 }

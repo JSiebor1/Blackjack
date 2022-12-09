@@ -30,6 +30,31 @@ https://youtu.be/vOzy8sbGWCw
 ### Issues and Future Work
 There are no known issues present within this project. Future work will consist of implementation of split and double down, to truly follow the rules of American Blackjack.
 
+### What classes do you have? Name each: 
+  1)	BlackjackApp
+  2)	Card
+  3)	Deck
+### Between which classes do you have composition? 
+  We implemented our HAS-A relationship between our classes BlackjackApp and Deck, our second HAS-A relationship is between our classes Deck and Card.
+### Between which classes do you have inheritance? 
+  We implemented inheritance between our GameController and BlackjackApp. Our Class GameController inherits from BlackjackApp.
+### Name the class that is abstract or is an interface. 
+  We were unable to implement this requirement in our project.
+### Where is the polymorphic call in your program and how does it become a polymorphic call? 
+  We were unable to implement this requirement in our project.
+### Where do you use an array or ArrayList in your code? 
+  We have 2 ArrayLists implemented in BlackjackApp called playerHand and dealerHand
+### The JavaFX FXML GUI should include
+### What panes did you use and where in the program? At least 2 different class Pane or its subclasses
+  We have used Multiple Nested AnchorPanes on our two main scenes.
+### What controls did you use and where in the program? At least 3 different Javafx controls:
+  We used multiple JavaFx controls namely:
+  Buttons, TextFields, Labels, ImageViews, AnchorPanes and HBoxes
+  
+  
+![image](https://user-images.githubusercontent.com/73120392/206623831-66d64d25-5d69-45ff-aa36-bcae9370383e.png)
+
+
 ## Project Proposal
 
 ### Theme

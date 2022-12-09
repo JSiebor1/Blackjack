@@ -27,6 +27,9 @@ https://youtu.be/dHVl62xjCdY
 Code:
 https://youtu.be/vOzy8sbGWCw
 
+### Issues and Future Work
+There are no known issues present within this project. Future work will consist of implementation of split and double down, to truly follow the rules of American Blackjack.
+
 ## Project Proposal
 
 ### Theme

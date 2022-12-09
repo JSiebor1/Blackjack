@@ -20,6 +20,13 @@ The game will follow the rules of US blackjack. Deck class has-a Card class: cre
 
 ![4](https://user-images.githubusercontent.com/116303417/206606620-1d867ec7-18f7-4d0a-839e-c5aa3e864f53.png)
 
+### Videos
+Execution of the game:
+https://youtu.be/dHVl62xjCdY
+
+Code:
+https://youtu.be/vOzy8sbGWCw
+
 ## Project Proposal
 
 ### Theme
@@ -34,7 +41,4 @@ The game will follow the rules of US blackjack. Deck class has-a Card class: cre
 ### UML Diagram
 ![Blackjack_UML_v2](Blackjack_UML_v2.png)
 
-### Link to the videos
-https://youtu.be/dHVl62xjCdY shows the game running
 
-https://youtu.be/vOzy8sbGWCw shows the code

@@ -36,4 +36,5 @@ The game will follow the rules of US blackjack. Deck class has-a Card class: cre
 
 ### Link to the videos
 https://youtu.be/dHVl62xjCdY shows the game running
+
 https://youtu.be/vOzy8sbGWCw shows the code

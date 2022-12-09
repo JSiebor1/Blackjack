@@ -40,8 +40,3 @@ The game will follow the rules of US blackjack. Deck class has-a Card class: cre
 
 ### UI Sketch
 ![BlackjackUI](https://user-images.githubusercontent.com/116303417/198058947-5f84b013-87ab-4a29-bcd1-b7d18f7a4cd7.png)
-
-### UML Diagram
-![Blackjack_UML_v2](Blackjack_UML_v2.png)
-
-

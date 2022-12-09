@@ -33,3 +33,7 @@ The game will follow the rules of US blackjack. Deck class has-a Card class: cre
 
 ### UML Diagram
 ![Blackjack_UML_v2](Blackjack_UML_v2.png)
+
+### Link to the videos
+https://youtu.be/dHVl62xjCdY shows the game running
+https://youtu.be/vOzy8sbGWCw shows the code

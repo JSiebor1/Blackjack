@@ -51,9 +51,6 @@ There are no known issues present within this project. Future work will consist 
   We used multiple JavaFx controls namely:
   Buttons, TextFields, Labels, ImageViews, AnchorPanes and HBoxes
   
-  
-![image](https://user-images.githubusercontent.com/73120392/206623831-66d64d25-5d69-45ff-aa36-bcae9370383e.png)
-
 
 ## Project Proposal
 
